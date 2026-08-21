@@ -23,19 +23,5 @@ Abra o arquivo `index.html` diretamente no navegador ou use a extensão Live Ser
 
 https://hudsonneves.github.io/landing-page-advocacia/
 
-## Sugestão para duas aulas
 
-### Aula 1 — Estrutura e Flexbox
-
-1. Apresentar a estrutura de pastas.
-2. Construir header, hero e seção de áreas de atuação.
-3. Explicar `display: flex`, `justify-content`, `align-items`, `gap`, `flex` e `flex-wrap`.
-4. Montar cards reutilizáveis.
-
-### Aula 2 — Finalização e responsividade
-
-1. Construir sobre, estatísticas, depoimentos, CTA e footer.
-2. Trabalhar variáveis CSS, estados de hover e tipografia.
-3. Aplicar media queries para tablet e celular.
-4. Personalizar textos, cores e imagens.
 
