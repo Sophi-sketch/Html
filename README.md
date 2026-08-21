@@ -38,3 +38,4 @@ https://hudsonneves.github.io/landing-page-advocacia/
 2. Trabalhar variáveis CSS, estados de hover e tipografia.
 3. Aplicar media queries para tablet e celular.
 4. Personalizar textos, cores e imagens.
+

@@ -60,3 +60,69 @@ if (menuButton && mainNav) {
     }
   });
 }
+/* ==========================================================================
+   Validação Client-Side do Formulário de Contato
+   ========================================================================== */
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("contact-form");
+
+  if (!form) return;
+
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    let isValid = true;
+
+    const name = document.getElementById("name");
+    const email = document.getElementById("email");
+    const phone = document.getElementById("phone");
+    const message = document.getElementById("message");
+
+    // Limpa erros anteriores
+    document.querySelectorAll(".error-message").forEach((span) => {
+      span.textContent = "";
+    });
+
+    // Função auxiliar para exibir erro
+    const showError = (input, msg) => {
+      const errorSpan = input.parentElement.querySelector(".error-message");
+      if (errorSpan) {
+        errorSpan.textContent = msg;
+        errorSpan.style.color = "#e74c3c";
+        errorSpan.style.fontSize = "0.85rem";
+        errorSpan.style.marginTop = "0.25rem";
+        errorSpan.style.display = "block";
+      }
+    };
+
+    // Validação do Nome
+    if (name.value.trim().length < 3) {
+      showError(name, "Informe seu nome completo.");
+      isValid = false;
+    }
+
+    // Validação do E-mail
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email.value.trim())) {
+      showError(email, "Insira um e-mail válido.");
+      isValid = false;
+    }
+
+    // Validação do Telefone
+    if (phone.value.trim().length < 10) {
+      showError(phone, "Insira um telefone válido com DDD.");
+      isValid = false;
+    }
+
+    // Validação da Mensagem
+    if (message.value.trim().length < 10) {
+      showError(message, "A mensagem deve ter pelo menos 10 caracteres.");
+      isValid = false;
+    }
+
+    // Sucesso
+    if (isValid) {
+      alert("Sua mensagem foi enviada com sucesso!");
+      form.reset();
+    }
+  });
+});

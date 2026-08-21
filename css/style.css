@@ -719,3 +719,98 @@ h2 {
     border-bottom: 0;
   }
 }
+
+//Estilização do Formulário de Contato e Validação
+
+/* Ajusta a área da seção CTA para comportar o formulário em duas colunas no desktop */
+.cta-content {
+  align-items: flex-start;
+}
+
+.cta-content > div {
+  flex: 1;
+}
+
+/* Container principal do formulário */
+.contact-form {
+  flex: 1;
+  width: 100%;
+  max-width: 540px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  background: var(--white);
+  padding: 32px;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+
+/* Agrupamento de rótulo (label) e campos de entrada */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--navy);
+}
+
+/* Estilo padronizado para inputs e textarea */
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 14px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  color: var(--text);
+  background: #fcfcfc;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 110px;
+}
+
+/* Efeito ao clicar/focar nos campos de entrada */
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(199, 139, 53, 0.15);
+  background: var(--white);
+}
+
+/* Mensagens de erro exibidas via JS */
+.error-message {
+  font-size: 0.82rem;
+  color: #d93838;
+  display: none;
+}
+
+/* Botão do formulário ocupa a largura total */
+.contact-form .button {
+  width: 100%;
+  margin-top: 6px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Ajustes responsivos para telas de até 900px */
+@media (max-width: 900px) {
+  .cta-content {
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .contact-form {
+    max-width: 100%;
+    padding: 24px;
+  }
+}
