@@ -1,0 +1,721 @@
+/* Variáveis globais: centralizam cores e sombras para facilitar alterações futuras. */
+:root {
+  --navy: #0b2638;
+  --navy-2: #133a52;
+  --gold: #c78b35;
+  --gold-dark: #a86e1f;
+  --cream: #f7f2ea;
+  --white: #ffffff;
+  --text: #20262b;
+  --muted: #66717a;
+  --line: #e7e0d7;
+  --shadow: 0 14px 35px rgba(11, 38, 56, 0.10);
+}
+
+/* Reset básico: remove espaços padrão e inclui bordas no cálculo das dimensões. */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Produz uma rolagem suave quando um link aponta para uma seção da página. */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Aparência geral herdada pelos elementos da página. */
+body {
+  font-family: "Inter", Arial, sans-serif;
+  color: var(--text);
+  background: var(--white);
+  line-height: 1.6;
+}
+
+/* Torna imagens responsivas e remove o pequeno espaço de imagens inline. */
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* Remove a aparência padrão para que cada tipo de link receba seu próprio estilo. */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Centraliza o conteúdo e limita sua largura máxima a 1120 pixels. */
+.container {
+  width: min(1120px, calc(100% - 40px));
+  margin: 0 auto;
+}
+
+/* Títulos principais usam uma fonte diferente para criar hierarquia visual. */
+h1,
+h2 {
+  font-family: "Playfair Display", Georgia, serif;
+  line-height: 1.12;
+}
+
+h1 {
+  font-size: clamp(2.5rem, 5vw, 4.6rem);
+  color: var(--white);
+  max-width: 720px;
+}
+
+h2 {
+  font-size: clamp(2rem, 4vw, 3.1rem);
+  color: var(--navy);
+}
+
+/* Rótulo pequeno, em caixa alta, exibido antes dos títulos das seções. */
+.eyebrow {
+  color: var(--gold-dark);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+/* Base compartilhada por todos os botões do site. */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 24px;
+  border-radius: 4px;
+  font-weight: 700;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.button:hover {
+  transform: translateY(-2px);
+}
+
+/* Variação preenchida usada nas chamadas para ação mais importantes. */
+.button-gold {
+  color: var(--white);
+  background: var(--gold);
+}
+
+.button-gold:hover {
+  background: var(--gold-dark);
+}
+
+/* Variação transparente usada como ação secundária no hero. */
+.button-outline {
+  color: var(--white);
+  border: 1px solid rgba(255,255,255,0.55);
+}
+
+.button-small {
+  min-height: 42px;
+  padding: 0 18px;
+  font-size: 0.9rem;
+}
+
+/* Cabeçalho sticky: permanece no topo enquanto a página é rolada. */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(255,255,255,0.96);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(10px);
+}
+
+/* Flexbox coloca marca, navegação e botão na mesma linha. */
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  min-height: 82px;
+}
+
+/* Agrupa o símbolo e as duas linhas de texto da marca. */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--navy);
+}
+
+.brand img {
+  width: 42px;
+  height: 42px;
+}
+
+.brand span {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.brand strong {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.05rem;
+}
+
+.brand small {
+  margin-top: 4px;
+  font-size: 0.62rem;
+  letter-spacing: 0.22em;
+}
+
+/* Navegação horizontal usada nas telas maiores. */
+.main-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  font-size: 0.92rem;
+}
+
+.main-nav a {
+  position: relative;
+}
+
+/* Pseudo-elemento que cria a linha dourada animada abaixo dos links. */
+.main-nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -8px;
+  width: 0;
+  height: 2px;
+  background: var(--gold);
+  transition: width 0.2s ease;
+}
+
+.main-nav a:hover::after {
+  width: 100%;
+}
+
+/* Elementos exclusivos do mobile começam escondidos no desktop. */
+.mobile-nav-cta,
+/* Define a área clicável de 44 pixels do botão hambúrguer. */
+.menu-toggle {
+  display: none;
+}
+
+.menu-toggle {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  padding: 10px;
+  border: 0;
+  border-radius: 4px;
+  color: var(--navy);
+  background: transparent;
+  cursor: pointer;
+}
+
+/* Cada span desenha uma das três linhas do ícone. */
+.menu-toggle span {
+  position: absolute;
+  left: 10px;
+  width: 24px;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.menu-toggle span:nth-child(1) {
+  transform: translateY(-7px);
+}
+
+.menu-toggle span:nth-child(3) {
+  transform: translateY(7px);
+}
+
+/* No estado aberto, duas linhas giram para formar um X e a linha central some. */
+.menu-toggle[aria-expanded="true"] span:nth-child(1) {
+  transform: rotate(45deg);
+}
+
+.menu-toggle[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle[aria-expanded="true"] span:nth-child(3) {
+  transform: rotate(-45deg);
+}
+
+/* Contorno para tornar a posição do teclado fácil de identificar. */
+.menu-toggle:focus-visible,
+.main-nav a:focus-visible {
+  outline: 3px solid rgba(199, 139, 53, 0.45);
+  outline-offset: 4px;
+}
+
+/* Hero: área inicial com fundo institucional e duas colunas. */
+.hero {
+  background: var(--navy);
+}
+
+/* Divide o conteúdo igualmente entre texto e ilustração. */
+.hero-content {
+  display: flex;
+  min-height: 590px;
+}
+
+.hero-copy,
+.hero-image {
+  flex: 1;
+}
+
+/* Centraliza verticalmente o texto dentro da coluna esquerda. */
+.hero-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 72px 60px 72px 0;
+}
+
+.hero-text {
+  max-width: 620px;
+  margin: 24px 0 30px;
+  color: #d8e1e7;
+  font-size: 1.05rem;
+}
+
+/* Mantém os botões lado a lado e permite quebra quando faltar espaço. */
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+/* Coluna da ilustração com um tom de azul ligeiramente mais claro. */
+.hero-image {
+  display: flex;
+  align-items: stretch;
+  min-width: 0;
+  background: var(--navy-2);
+}
+
+.hero-image img {
+  width: 100%;
+  object-fit: cover;
+}
+
+/* Espaçamento vertical reutilizado pelas seções principais. */
+.section {
+  padding: 92px 0;
+}
+
+/* Fundo alternativo usado para separar visualmente uma seção da outra. */
+.section-soft {
+  background: var(--cream);
+}
+
+/* Limita e centraliza o bloco introdutório de cada seção. */
+.section-heading {
+  max-width: 720px;
+  margin: 0 auto 46px;
+  text-align: center;
+}
+
+.section-heading p:last-child {
+  margin-top: 14px;
+  color: var(--muted);
+}
+
+/* As listas de áreas e depoimentos compartilham a mesma estrutura Flexbox. */
+.practice-list,
+.testimonial-list {
+  display: flex;
+  gap: 20px;
+}
+
+/* Card de área jurídica com conteúdo organizado verticalmente. */
+.practice-card {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+  padding: 30px;
+  border: 1px solid var(--line);
+  background: var(--white);
+  box-shadow: var(--shadow);
+}
+
+.practice-card img {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 20px;
+}
+
+.practice-card h3 {
+  color: var(--navy);
+  margin-bottom: 10px;
+}
+
+/* flex: 1 ocupa o espaço livre e mantém os links dos cards alinhados. */
+.practice-card p {
+  flex: 1;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.practice-card a {
+  margin-top: 24px;
+  color: var(--gold-dark);
+  font-weight: 700;
+}
+
+/* Seção sobre em duas colunas, uma para imagem e outra para texto. */
+.about-content {
+  display: flex;
+  align-items: center;
+  gap: 64px;
+}
+
+.about-image,
+.about-copy {
+  flex: 1;
+}
+
+.about-image img {
+  width: 100%;
+  border-radius: 6px;
+  box-shadow: var(--shadow);
+}
+
+.about-copy > p:not(.eyebrow) {
+  margin-top: 16px;
+  color: var(--muted);
+}
+
+/* Empilha os diferenciais e mantém um espaçamento constante entre eles. */
+.benefit-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-top: 30px;
+}
+
+.benefit {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+/* Círculo decorativo que destaca o símbolo de cada diferencial. */
+.benefit-icon {
+  display: flex;
+  flex: 0 0 40px;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: var(--gold-dark);
+  background: #f1e1c8;
+  font-weight: 700;
+}
+
+.benefit div {
+  display: flex;
+  flex-direction: column;
+}
+
+.benefit small {
+  color: var(--muted);
+}
+
+/* Faixa escura usada para destacar os indicadores numéricos. */
+.stats {
+  background: var(--navy);
+  color: var(--white);
+}
+
+/* Distribui os indicadores igualmente pela largura do container. */
+.stats-content {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 34px 0;
+}
+
+.stat {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.stat strong {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 2.2rem;
+  color: var(--gold);
+}
+
+.stat span {
+  font-size: 0.9rem;
+  color: #d8e1e7;
+}
+
+/* Card flexível que separa a citação da identificação do cliente. */
+.testimonial-card {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 0;
+  padding: 30px;
+  border: 1px solid var(--line);
+  background: var(--white);
+  box-shadow: var(--shadow);
+}
+
+.quote {
+  color: var(--muted);
+  font-style: italic;
+}
+
+/* Coloca o avatar e os dados do cliente na mesma linha. */
+.client {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.client img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.client div {
+  display: flex;
+  flex-direction: column;
+}
+
+.client span {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+/* Última chamada para ação antes do rodapé. */
+.cta {
+  padding: 56px 0;
+  background: var(--cream);
+}
+
+/* Separa o texto e o botão nas extremidades em telas grandes. */
+.cta-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.cta-content p:last-child {
+  margin-top: 10px;
+  color: var(--muted);
+}
+
+/* Rodapé com fundo escuro para encerrar visualmente a página. */
+.site-footer {
+  color: #d8e1e7;
+  background: #071b29;
+}
+
+/* Distribui marca, navegação e contato em três colunas. */
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  gap: 50px;
+  padding: 58px 0;
+}
+
+.footer-brand {
+  flex: 1.5;
+}
+
+.brand-light {
+  color: var(--white);
+}
+
+.footer-brand p {
+  max-width: 300px;
+  margin-top: 18px;
+  color: #aebcc5;
+}
+
+/* Organiza verticalmente os títulos e links de cada coluna. */
+.footer-column {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.footer-column h3 {
+  margin-bottom: 4px;
+  color: var(--gold);
+  font-size: 1rem;
+}
+
+.footer-column a,
+.footer-column span {
+  color: #aebcc5;
+  font-size: 0.9rem;
+}
+
+/* Faixa inferior destinada aos direitos autorais. */
+.footer-bottom {
+  padding: 18px 20px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  color: #8496a1;
+  font-size: 0.82rem;
+  text-align: center;
+}
+
+/* Tablet e mobile: ativa o menu hambúrguer e reorganiza blocos em menos colunas. */
+@media (max-width: 900px) {
+  .header-content > .button {
+    display: none;
+  }
+
+  .header-content {
+    position: relative;
+  }
+
+  .menu-toggle {
+    display: block;
+    flex: 0 0 44px;
+  }
+
+  /* O menu vira um painel abaixo do cabeçalho e começa invisível. */
+  .main-nav {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: 0;
+    display: flex;
+    visibility: hidden;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 10px 20px 20px;
+    border: 1px solid var(--line);
+    border-top: 0;
+    background: rgba(255,255,255,0.98);
+    box-shadow: var(--shadow);
+    opacity: 0;
+    transform: translateY(-8px);
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+  }
+
+  /* O JavaScript adiciona is-open para revelar e posicionar o painel. */
+  .main-nav.is-open {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .main-nav a {
+    padding: 13px 4px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .main-nav a::after {
+    display: none;
+  }
+
+  .main-nav .mobile-nav-cta {
+    display: inline-flex;
+    align-self: stretch;
+    margin-top: 14px;
+    padding: 0 18px;
+    border-bottom: 0;
+  }
+
+  .hero-content,
+  .about-content,
+  .cta-content {
+    flex-direction: column;
+  }
+
+  .hero-copy {
+    padding: 68px 0 48px;
+  }
+
+  .hero-image {
+    width: 100%;
+    max-height: 420px;
+  }
+
+  .practice-list,
+  .testimonial-list {
+    flex-wrap: wrap;
+  }
+
+  .practice-card,
+  .testimonial-card {
+    flex: 1 1 calc(50% - 20px);
+  }
+
+  .cta-content {
+    align-items: flex-start;
+  }
+}
+
+/* Acessibilidade: respeita usuários que preferem menos animações. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .button,
+  .menu-toggle span,
+  .main-nav {
+    transition: none;
+  }
+}
+
+/* Celulares menores: reduz espaços e transforma listas em uma única coluna. */
+@media (max-width: 640px) {
+  .container {
+    width: min(100% - 28px, 1120px);
+  }
+
+  .section {
+    padding: 70px 0;
+  }
+
+  .practice-card,
+  .testimonial-card {
+    flex-basis: 100%;
+  }
+
+  .stats-content,
+  .footer-content {
+    flex-direction: column;
+  }
+
+  .stats-content {
+    gap: 28px;
+  }
+
+  .stat {
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+    padding-bottom: 20px;
+  }
+
+  .stat:last-child {
+    border-bottom: 0;
+  }
+}

@@ -1,18 +1,235 @@
 <!DOCTYPE html>
-
-<html lang="port">
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+<html lang="pt-BR">
 <head>
-    <title>Document</title>
+  <!-- Configurações básicas: codificação, responsividade, descrição e título da aba. -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Landing page demonstrativa para um escritório de advocacia.">
+  <title>Souza & Associados Advocacia</title>
+  <!-- Conexão e importação das fontes utilizadas nos textos e títulos. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <!-- Importa o arquivo responsável pelo visual e pela responsividade. -->
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <img src="logotipo cortado.png" alt="Logo da NeuroLaço">
-    <h1> LOGIN</h1> 
-   <h2> Nome:</h2>
-    <h3> CPF:</h3>
-    <p> Não possuo cadastro.</p>    
-    </body>
+  <!-- Cabeçalho fixo: contém marca, navegação e chamadas para contato. -->
+  <header class="site-header">
+    <div class="container header-content">
+      <!-- A marca também funciona como link para o início da página. -->
+      <a class="brand" href="#inicio" aria-label="Souza & Associados - Página inicial">
+        <img src="assets/logo.svg" alt="Símbolo do escritório Souza & Associados">
+        <span><strong>Souza & Associados</strong><small>Advocacia</small></span>
+      </a>
+
+      <!-- O id conecta o menu ao botão mobile por meio do aria-controls. -->
+      <nav class="main-nav" id="main-nav" aria-label="Navegação principal">
+        <a href="#inicio">Início</a>
+        <a href="#areas">Áreas de atuação</a>
+        <a href="#sobre">Sobre nós</a>
+        <a href="#depoimentos">Depoimentos</a>
+        <a href="#contato">Contato</a>
+        <a class="button button-gold mobile-nav-cta" href="#contato">Agendar consulta</a>
+      </nav>
+
+      <!-- Este CTA aparece diretamente no cabeçalho das telas maiores. -->
+      <a class="button button-gold button-small" href="#contato">Agendar consulta</a>
+
+      <!-- As três linhas formam o ícone hambúrguer; aria-expanded indica seu estado. -->
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Abrir menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Conteúdo principal. Cada section representa um assunto da landing page. -->
+  <main>
+    <!-- Hero: apresentação principal e primeiras chamadas para ação. -->
+    <section class="hero" id="inicio">
+      <div class="container hero-content">
+        <div class="hero-copy">
+          <p class="eyebrow">Advocacia com excelência e compromisso</p>
+          <h1>Soluções jurídicas para proteger o que mais importa.</h1>
+          <p class="hero-text">Atuamos com ética, estratégia e dedicação para defender seus direitos e alcançar os melhores resultados.</p>
+          <div class="hero-actions">
+            <a class="button button-gold" href="#contato">Falar com um advogado</a>
+            <a class="button button-outline" href="#areas">Conhecer nossas áreas</a>
+          </div>
+        </div>
+
+        <!-- Ilustração decorativa que complementa o texto de apresentação. -->
+        <div class="hero-image" aria-hidden="true">
+          <img src="assets/hero-justica.svg" alt="Ilustração de uma balança da justiça em um escritório">
+        </div>
+      </div>
+    </section>
+
+    <!-- Áreas de atuação: apresenta os serviços em cards independentes. -->
+    <section class="section" id="areas">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Áreas de atuação</p>
+          <h2>Como podemos ajudar</h2>
+          <p>Atendimento jurídico consultivo e contencioso para pessoas, famílias e empresas.</p>
+        </div>
+
+        <!-- article indica que cada card possui conteúdo próprio e independente. -->
+        <div class="practice-list">
+          <article class="practice-card">
+            <img src="assets/icon-civil.svg" alt="">
+            <h3>Direito Civil</h3>
+            <p>Contratos, responsabilidade civil, cobranças e relações do cotidiano.</p>
+            <a href="#contato">Saiba mais <span aria-hidden="true">→</span></a>
+          </article>
+
+          <article class="practice-card">
+            <img src="assets/icon-trabalho.svg" alt="">
+            <h3>Direito Trabalhista</h3>
+            <p>Orientação preventiva e defesa de empregados e empregadores.</p>
+            <a href="#contato">Saiba mais <span aria-hidden="true">→</span></a>
+          </article>
+
+          <article class="practice-card">
+            <img src="assets/icon-empresa.svg" alt="">
+            <h3>Direito Empresarial</h3>
+            <p>Assessoria para contratos, sociedades, negociações e riscos jurídicos.</p>
+            <a href="#contato">Saiba mais <span aria-hidden="true">→</span></a>
+          </article>
+
+          <article class="practice-card">
+            <img src="assets/icon-familia.svg" alt="">
+            <h3>Direito de Família</h3>
+            <p>Atuação humanizada em divórcio, guarda, alimentos e sucessões.</p>
+            <a href="#contato">Saiba mais <span aria-hidden="true">→</span></a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sobre: combina uma imagem, a apresentação e os diferenciais do escritório. -->
+    <section class="section section-soft" id="sobre">
+      <div class="container about-content">
+        <div class="about-image">
+          <img src="assets/escritorio.svg" alt="Ilustração de uma sala de reunião de escritório de advocacia">
+        </div>
+
+        <div class="about-copy">
+          <p class="eyebrow">Sobre nós</p>
+          <h2>Compromisso com a justiça. Foco em resultados.</h2>
+          <p>Nosso escritório é pautado em valores sólidos, atendimento personalizado e estratégias jurídicas eficazes para cada caso.</p>
+          <p>Mais do que processos, defendemos pessoas, patrimônios e negócios.</p>
+
+          <!-- Lista de benefícios; cada item agrupa símbolo, título e descrição. -->
+          <div class="benefit-list">
+            <div class="benefit">
+              <span class="benefit-icon">✓</span>
+              <div><strong>Atendimento personalizado</strong><small>Cada caso recebe uma estratégia própria.</small></div>
+            </div>
+            <div class="benefit">
+              <span class="benefit-icon">⚖</span>
+              <div><strong>Ética e transparência</strong><small>Comunicação clara em todas as etapas.</small></div>
+            </div>
+            <div class="benefit">
+              <span class="benefit-icon">↗</span>
+              <div><strong>Foco em resultados</strong><small>Decisões orientadas por objetivos.</small></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Indicadores numéricos exibidos em uma faixa de destaque. -->
+    <section class="stats">
+      <div class="container stats-content">
+        <div class="stat"><strong>+10</strong><span>anos de experiência</span></div>
+        <div class="stat"><strong>+1.500</strong><span>casos resolvidos</span></div>
+        <div class="stat"><strong>+800</strong><span>clientes atendidos</span></div>
+        <div class="stat"><strong>98%</strong><span>de satisfação</span></div>
+      </div>
+    </section>
+
+    <!-- Depoimentos: cards usados como prova social. -->
+    <section class="section" id="depoimentos">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Depoimentos</p>
+          <h2>O que nossos clientes dizem</h2>
+        </div>
+
+        <div class="testimonial-list">
+          <article class="testimonial-card">
+            <p class="quote">“Excelente profissionalismo e dedicação. Tive um atendimento muito claro durante todo o processo.”</p>
+            <div class="client">
+              <img src="assets/avatar-1.svg" alt="Avatar ilustrado de Carlos Martins">
+              <div><strong>Carlos Martins</strong><span>Empresário</span></div>
+            </div>
+          </article>
+
+          <article class="testimonial-card">
+            <p class="quote">“Atendimento humanizado, transparente e objetivo desde a primeira conversa. Recomendo.”</p>
+            <div class="client">
+              <img src="assets/avatar-2.svg" alt="Avatar ilustrado de Juliana Silva">
+              <div><strong>Juliana Silva</strong><span>Cliente</span></div>
+            </div>
+          </article>
+
+          <article class="testimonial-card">
+            <p class="quote">“Equipe preparada e estratégica. Senti segurança para tomar decisões importantes.”</p>
+            <div class="client">
+              <img src="assets/avatar-3.svg" alt="Avatar ilustrado de Ricardo Torres">
+              <div><strong>Ricardo Torres</strong><span>Cliente</span></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA final: convida o visitante a iniciar o contato por e-mail. -->
+    <section class="cta" id="contato">
+      <div class="container cta-content">
+        <div>
+          <p class="eyebrow">Orientação jurídica</p>
+          <h2>Precisa conversar com um advogado?</h2>
+          <p>Envie sua mensagem e retornaremos o contato para entender o seu caso.</p>
+        </div>
+        <a class="button button-gold" href="mailto:contato@souzaadv.com.br">Agendar consulta</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Rodapé: reúne marca, links úteis, contato e direitos autorais. -->
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <div class="footer-brand">
+        <a class="brand brand-light" href="#inicio">
+          <img src="assets/logo.svg" alt="">
+          <span><strong>Souza & Associados</strong><small>Advocacia</small></span>
+        </a>
+        <p>Excelência jurídica com foco em pessoas e resultados.</p>
+      </div>
+
+      <div class="footer-column">
+        <h3>Navegação</h3>
+        <a href="#inicio">Início</a>
+        <a href="#areas">Áreas de atuação</a>
+        <a href="#sobre">Sobre nós</a>
+        <a href="#depoimentos">Depoimentos</a>
+      </div>
+
+      <div class="footer-column">
+        <h3>Contato</h3>
+        <span>(11) 99999-9999</span>
+        <span>contato@souzaadv.com.br</span>
+        <span>Rua das Orquídeas, 123<br>São Paulo - SP</span>
+      </div>
+    </div>
+    <!-- Faixa inferior reservada aos direitos autorais. -->
+    <div class="footer-bottom">© 2026 Souza & Associados Advocacia. Projeto educacional.</div>
+  </footer>
+  <!-- Carregado no final para que os elementos HTML já existam ao executar o script. -->
+  <script src="js/menu.js"></script>
+</body>
 </html>
