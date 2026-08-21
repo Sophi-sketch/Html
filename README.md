@@ -29,10 +29,6 @@ Simulação do Envio: Como esta é uma etapa puramente Front-End, a submissão d
 
 - Desenvolver suporte a alternância de tema (Dark Mode).
 
-## Site publicado
-
-https://hudsonneves.github.io/landing-page-advocacia/
-
 
 
 
