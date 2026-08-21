@@ -19,9 +19,20 @@ Os arquivos de código contêm comentários didáticos que explicam cada bloco f
 
 Abra o arquivo `index.html` diretamente no navegador ou use a extensão Live Server no VS Code.
 
+## Restrições e Limitações
+Simulação do Envio: Como esta é uma etapa puramente Front-End, a submissão do formulário não possui integração nativa com servidores ou bancos de dados (Back-End). O envio é interceptado no JavaScript para validação das regras.
+
+## Pendências e Próximos Passos
+- Implementar máscaras automáticas no formulário (ex: formatação do telefone (XX) XXXXX-XXXX enquanto o usuário digita).
+
+- Integrar o formulário a um serviço de envio de e-mails via API (ex: EmailJS ou SendGrid).
+
+- Desenvolver suporte a alternância de tema (Dark Mode).
+
 ## Site publicado
 
 https://hudsonneves.github.io/landing-page-advocacia/
+
 
 
 
